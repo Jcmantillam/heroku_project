@@ -17,7 +17,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from init import views
 from django.config import settings
-from django.config.urls.static
+from django.config.urls.static import static
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$',views.index,name="index")
