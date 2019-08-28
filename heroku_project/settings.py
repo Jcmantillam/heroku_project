@@ -1,4 +1,4 @@
-'''
+#'''
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -136,7 +136,7 @@ SECRET_KEY = '069@^34c=%&)s&bhm4%k=$*nqi)sbx-^b=i-vw5)b(9st=c6oa'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -229,4 +229,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-#'''
+'''
