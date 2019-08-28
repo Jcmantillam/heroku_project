@@ -1,280 +1,812 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
   <head>
-    <meta charset="utf-8">
-    <title></title>
     <style>
-        @import url("https://fonts.googleapis.com/css?family=Montserrat:400,400i,700");
+     
+@import url('https://fonts.googleapis.com/css?family=Chela+One');
+@import url('https://fonts.googleapis.com/css?family=Abel');
+@import url('https://fonts.googleapis.com/css?family=Catamaran:400,700');
 
-        html, body, .container {
-        width: 100%;
-        height: 100%;
-        }
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
 
-        body {
-        padding: 0;
-        margin: 0;
-        }
+html {
+  scroll-behavior: smooth; /*magical smooth-scrolling, ofc does not work in IE*/
+}
 
-        .nav {
-        background-color: #efefef;
-        height: 50px;
-        box-sizing: border-box;
-        box-shadow: 0 5px 10px #000;
-        position: relative;
-        top: 0;
-        left: 0;
-        right: 0;
-        transition: top 0.15s ease-out, border-radius 0.15s ease-out;
-        }
+body {
+  padding: 0;
+  font-family: "Catamaran", Trebuchet, sans-serif;
+  color: #323031;
+  line-height: 2.5rem;
+  background-color: #ececec;
+}
 
-        .nav.active {
-        background-color: rgba(255, 255, 255, 0.8);
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        right: 20px;
-        border-radius: 8px 5px;
-        }
+header,
+nav,
+section,
+figure,
+article img,
+iframe,
+legend,
+footer {
+  width: 100%;
+}
 
-        .nav > ul {
-        width: 100%;
-        padding: 0 20px;
-        margin: 0;
-        box-sizing: border-box;
-        list-style-type: none;
-        }
+article,
+footer div {
+  width: 30%;
+}
 
-        .nav > ul > li {
-        float: left;
-        display: inline-block;
-        }
+body,
+h3,
+ul,
+p,
+figure,
+fieldset {
+  margin: 0;
+}
 
-        .nav > ul > li > a {
-        color: #222;
-        font-family: Montserrat, sans-serif;
-        text-decoration: none;
-        height: 50px;
-        line-height: 50px;
-        padding: 0 20px;
-        display: block;
-        text-shadow: 0 -1px #fff;
-        transition: background 0.15s ease;
-        }
+fieldset,
+article,
+legend {
+  background-color: #fff;
+}
 
-        .nav > ul > li > a:hover {
-        background-color: #dfdfdf;
-        }
+header,
+nav,
+fieldset div,
+.video-container {
+  text-align: center;
+}
 
-        .nav.active > ul > li > a:hover {
-        background-color: rgba(180, 180, 180, 0.7);
-        }
+body,
+input {
+  font-size: 1.5rem;
+}
 
-        .bg {
-        width: 100%;
-        height: 100vh;
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        }
+a {
+  text-decoration: none;
+}
 
-        .bg > div {
-        color: white;
-        font-family: Montserrat, sans-serif;
-        text-align: center;
-        width: 100%;
-        padding: 30px;
-        text-shadow: 0 -1px #222;
-        }
+nav a:hover,
+footer a:hover {
+  color: #bbced3;
+}
 
-        #home {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=4fba67b5319cf9a5f2f209063f5620d3);
-        }
+.hamburger-nav,
+.hamburger,
+.cross {
+  display: none;
+}
 
-        #about {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://images.unsplash.com/photo-1528192349722-04f1f48b42f1?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=bdaf3dd8c9443bda31acd408cb338ed4);
-        }
 
-        #services {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://images.unsplash.com/photo-1521453159160-6b5c58c24591?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=cf68541f3f1fd0812bfc120e6c15f284);
-        }
+/*--------------------------------HEADER & NAV---------------------------*/
 
-        #contact {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://images.unsplash.com/uploads/1413222992504f1b734a6/1928e537?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=6e7632177f5d243c31319268f10d73d9);
-        }
+header {
+  height: 600px;
+  position: relative;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
 
-        .newsletter {
-        color: #fff;
-        font-family: Montserrat, sans-serif;
-        background-image: linear-gradient(#002db5, #203be8);
-        height: 120px;
-        box-sizing: border-box;
-        padding: 0 50px;
-        box-shadow: 0 0 30px 10px #000;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        align-content: center;
-        }
+/*.bg-parent and .bg to show background and avoiding loading on mobiles*/
 
-        .newsletter > p {
-        width: 100%;
-        margin: 0;
-        }
+.bg-parent {
+  width: 100%;
+  height: 600px;
+  position: relative;
+  z-index: -1;
+}
 
-        .newsletter > div {
-        margin-top: 15px;
-        }
+.bg {
+  width: 100%;
+  height: 600px;
+  position: relative;
+  background-image: url("https://res.cloudinary.com/grigoriewna/image/upload/v1536771527/FCC_LandingPage/bg-header.jpg");
+  background-position: top center;
+  background-size: cover;
+  z-index: -1;
+}
 
-        .newsletter > div > input {
-        color: #fff;
-        font-family: Montserrat, sans-serif;
-        background-color: #8597ff;
-        width: 200px;
-        border: none;
-        padding: 10px;
-        transition: background-color 0.15s, color 0.15s;
-        }
+#header-img {
+  position: relative;
+  top: -250px;
+  padding: 0;
+  margin: 0 auto;
+  -moz-box-shadow: 0 0 50px 20px #000;
+  -webkit-box-shadow: 0 0 50px 20px #000;
+  box-shadow: 0 0 50px 20px #000;
+  z-index: 2;
+}
 
-        .newsletter > div > input:focus {
-        color: #000;
-        background-color: #fff;
-        }
+nav {
+  position: fixed;
+  top: 0;
+  height: 70px;
+  padding-top: 1rem;
+  z-index: 5;
+}
 
-        .newsletter > div > button {
-        color: #fff;
-        font-family: Montserrat, sans-serif;
-        background-color: #000599;
-        border: none;
-        padding: 10px 20px;
-        transition: background-color 0.15s;
-        }
+nav a {
+  font-family: "Chela One", cursive;
+  font-size: 3rem;
+  color: #ffc857;
+  text-transform: lowercase;
+  text-shadow: 1px 1px 40px #000;
+  z-index: 2;
+}
 
-        .newsletter > div > button:hover {
-        background-color: #000470;
-        cursor: pointer;
-        }
+.sticky-dark {
+  position: fixed;
+  top: 0;
+  background-color: #323031;
+}
 
-        .newsletter > div > button:active {
-        background-color: #0016a8;
-        }
+ul {
+  height: 4rem;
+  position: relative;
+  padding-bottom: 0;
+  list-style-type: none;
+}
 
-        .footer {
-        font-family: Montserrat, sans-serif;
-        background-color: #efefef;
-        width: 100%;
-        height: 300px;
-        padding: 30px;
-        display: flex;
-        align-items: flex-end;
-        align-content: flex-end;
-        flex-wrap: wrap;
-        box-sizing: border-box;
-        }
+li {
+  display: inline;
+  padding: 0 2rem;
+}
 
-        .footer > span:first-child {
-        font-weight: bold;
-        margin-bottom: 25px;
-        }
+/* to good anchoring with fixed navbar */
+.anch {
+  position: relative;
+  height: 100px;
+  margin-top: -100px;
+  display: block;
+  visibility: hidden;
+}
 
-        .footer > span:last-child {
-        margin-top: 25px;
-        }
+h2 {
+  font-size: 3rem;
+  color: #177e89;
+  font-weight: 700;
+  letter-spacing: 0.5rem;
+  margin: 0 0 2rem 0;
+  padding: 0;
+}
 
-        .footer > span {
-        color: #222;
-        width: 100%;
-        display: block;
-        margin-top: 10px;
-        }
+/* h2:before to link to the anchor a little above due to visibility of sticky navbar,
+not needed anymore as .anch serves the same purpose*/
 
-        .footer > span > a {
-        color: #888;
-        text-decoration: none;
-        }
+/*h2:before {
+  content: "";
+  height: 6rem;
+  display: block;
+}
+*/
 
-        .footer > span > a:hover {
-        text-decoration: underline;
-        }
+h3 {
+  padding: 1rem 1rem 0 1rem;
+  color: #c8102e;
+}
+
+main {
+  display: block;
+  width: 90%;
+  margin: 0 auto;
+}
+
+section {
+  padding: 2rem 2rem 0 2rem;
+}
+
+/*--------------------------ABOUT---------------------------------*/
+
+.flex-container-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+article img {
+  height: auto;
+}
+
+article > p {
+  padding: 1rem 1rem 2rem 1rem;
+}
+
+/*----------------------SCRIPTORIUM-----------------*/
+
+section > p {
+  padding: 0 1rem 2rem 1rem;
+}
+
+.video-container {
+  justify-content: center;
+  display: flex;
+
+}
+
+iframe {
+  max-width: 560px;
+  padding-top: 2rem;
+  border: 0;
+}
+
+/* ---------------------------------FORM ----------------------------------*/
+
+fieldset {
+  border: 0;
+  padding: 0 0 2rem 0;
+}
+
+fieldset div {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+legend {
+  margin: 0 0 1rem 0;
+  padding: 1rem;
+}
+
+form {
+  padding: 0;
+}
+
+label {
+  text-align: right;
+}
+
+input {
+  margin: 0 2rem;
+  padding: 0.5rem;
+  background-color: #ffc857;
+  border: 5px solid #ffc857;
+  font-family: "Catamaran", Trebuchet, sans-serif;
+}
+
+input[type="email"]:focus:invalid {
+  border-color: #c8102e;
+}
+
+input[type="email"]:focus:valid {
+  border-color: #177e89;
+}
+
+input[type="submit"] {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  color: #323031;
+  font-weight: bold;
+}
+
+input[type="submit"]:hover {
+  cursor: pointer;
+  border-color: #177e89;
+}
+
+
+/*---------------------------------FOLLOW--------------------------------*/
+
+.flex-container-footer,
+.flex-container-icon {
+  display: flex;
+  justify-content: space-around;
+}
+
+.flex-container-footer div,
+.flex-container-icon div {
+  margin: 1rem 1rem 3rem 1rem;
+}
+
+.fab {
+  font-size: 5rem;
+  color: #323031;
+}
+
+.fab:hover {
+  color: #c8102e;
+}
+
+
+/*--------------------------FOOTER-----------------------------------*/
+
+footer {
+  background-color: #323031;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: #fff;
+  margin-top: 3rem;
+  padding: 1rem;
+}
+
+footer a {
+  color: #ffc857;
+}
+
+.toplink {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+
+/*------------------------MEDIA QERIES------------------------------*/
+
+@media (max-width: 900px) {
+
+  li {
+    padding: 0 1rem;
+  }
+
+  nav a {
+    font-size: 2.5rem;
+  }
+
+  input,
+  label {
+    display: block;
+    margin: 0.5rem auto;
+  }
+
+  label {
+    text-align: center;
+  }
+
+}
+
+
+@media (max-width: 700px) {
+
+  .bg-parent, .bg {
+    height: 400px;
+  }
+
+  header {
+    height: 400px;
+    margin-bottom: 0;
+  }
+
+  #header-img {
+    margin-top: 100px;
+  }
+
+  .min-light {
+    background-color: #fff;
+  }
+
+  .anch {
+    height: 68px;
+    margin-top: -68px;
+  }
+
+  .flex-container-between,
+  .flex-container-footer {
+    flex-flow: column;
+  }
+
+  footer {
+    padding: 0.5rem;
+    line-height: 1.2rem;
+  }
+
+  article, footer div {
+    width: 90%;
+  }
+
+  .credit {
+    padding: 0;
+    margin: 0;
+  }
+
+  footer, .credit {
+    text-align: center;
+  }
+
+  h2 {
+    text-align: center;
+    padding: 1rem 0 0 0;
+    font-size: 2rem;
+  }
+
+  nav {
+    background-color: #323031;
+  }
+
+  nav ul {
+    padding: 0;
+  }
+
+  nav a {
+    font-size: 1.8rem;
+  }
+
+  li {
+    padding: 0 0.5rem;
+  }
+
+  main,
+  fieldset {
+    width: 100%;
+  }
+  fieldset {
+    padding: 0;
+  }
+
+  footer div {
+    margin: 0;
+  }
+
+  section {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+  }
+
+  .toplink {
+    padding: 1rem;
+  }
+
+  .flex-container-footer div {
+    margin: 0.5rem;
+  }
+
+  .flex-container-between article{
+    width: 100%;
+  }
+
+}
+
+
+@media (max-width: 430px) {
+
+  /*hamburger menu*/
+
+  header {
+    margin-bottom: 0;
+  }
+
+  .anch {
+    height: 220px;
+    margin-top: -220px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  section {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  input {
+    font-size: 1rem;
+  }
+
+  header {
+    height: 70px;
+  }
+
+  #header-img,
+  .bg-parent {
+    display:none;
+  }
+
+  input[type="submit"],
+  input[type="email"] {
+    border: 2px solid #ffc857;
+  }
+
+  input[type="email"] {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .fab {
+    font-size: 3rem;
+  }
+
+  footer {
+    font-size: 0.8rem;
+    padding: 2rem 0.5rem;
+    width: 100%;
+  }
+
+  footer div {
+    width: 90%;
+  }
+
+  .flex-container-footer div {
+    margin: 0;
+  }
+
+  .to-top {
+    font-size: 1rem;
+  }
+
+  h3 {
+    font-weight: bold;
+  }
+
+/*-------HAMBURGER MENU-------------*/
+
+  .hamburger-nav {
+    display: block;
+    background-color: #323031;
+    width: 100%;
+    height: 65px;
+    position: fixed;
+    top: 0;
+    z-index: 10000000000000000000000;
+  }
+
+  .small-title a {
+    color: #ffc857;
+    display: inline;
+    position: relative;
+    top: 0.5rem;
+    right: 1.5rem;
+    font-family: "Chela One", cursive;
+    font-size: 1.8rem;
+    padding-top: 2rem;
+    text-align: center;
+  }
+
+  .hamburger {
+    display: inline;
+    background:none;
+    position:absolute;
+    top:0;
+    right:0;
+    line-height:45px;
+    padding: 0.4rem 1rem 0 1rem;
+    color:#ffc857;
+    border:0;
+    font-size:1.4em;
+    font-weight:bold;
+    cursor:pointer;
+    outline:none;
+    z-index:10000000000000;
+  }
+  
+  .cross{
+    display: inline;
+    background:none;
+    position:absolute;
+    top:0px;
+    right:0;
+    padding: 0.4rem 1rem 0 1rem;
+    color:#ffc857;
+    border:0;
+    font-size:3em;
+    line-height:65px;
+    font-weight:bold;
+    cursor:pointer;
+    outline:none;
+    z-index:10000000000000;
+  }
+
+ ul {
+    position: absolute;
+    top: 65px;
+    width: 100%;
+    background-color: #323031;
+    padding-bottom: 1.5rem;
+  }
+
+  li {
+    display: block;
+    background-color: #323031;
+    padding: 0;
+  }
+
+  nav {
+    padding-top: 0;
+  }
+
+  nav a {
+    font-family: "Catamaran", Trebuchet, sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    font-weight: bold;
+    text-shadow: none;
+  }
+
+}
+
     </style>
+      
     <script>
-      $(document).ready(function() {
-      $('a[href^="#"]').on('click', function(evt) {
-        evt.preventDefault();
+      //adding element manually - because IE
+document.createElement("main");
 
-        var link = $(this).attr('href');
-        var less = (!$('#nav').hasClass('active')) ? 50 : 0;
+//navbar fixed
+const navBar = document.getElementById("nav-bar"),
+      headBar = document.getElementById("header");
 
-        $('html, body').animate({
-          scrollTop: $(link).offset().top - less
-        }, 750);
-      });
+window.onscroll = function scrollToStick() {
+  if (window.pageYOffset > (headBar.clientHeight - navBar.clientHeight)) {  // height of header - height of navbar
+    navBar.classList.add("sticky-dark");
+  } else {
+    navBar.classList.remove("sticky-dark");
+  }
+};
 
-      $(window).on('scroll', function() {
-        if ($(this).scrollTop() > 100) {
-          $('#nav').addClass('active');
-        }
-        else {
-          $('#nav').removeClass('active');
-        }
-      });
-      });
+//scroll to top
+const toTop = document.getElementById("to-top");
+
+var scrollTimer,
+    scrollValue;
+
+const scrollToTop = function(event) {
+  event.preventDefault();
+  scrollValue = window.scrollY;
+  scrollTimer = setInterval(scrollStep, 1);
+};
+
+const scrollStep = function() {
+  scrollValue -= 30;
+  window.scrollTo(0, scrollValue);
+  if (scrollValue <= 0 || isNaN(scrollValue)) {
+    clearInterval(scrollTimer);
+  }
+};
+
+toTop.addEventListener("click", scrollToTop);
+
+
+//JQUERY
+jQuery(document).ready(function($) {
+
+//adding .menu class on small devices
+  let alterClass = function() {
+    let ww = document.body.clientWidth;
+    if (ww <= 430) {
+      $("#nav-bar").addClass("menu");
+    } else if (ww > 430) {
+      $("#nav-bar").removeClass("menu");
+    }
+  };
+  $(window).resize(function(){
+    alterClass();
+  });
+
+  alterClass();
+
+//hamburger
+  $( ".cross" ).hide();
+  $( ".menu" ).hide();
+  $( ".hamburger" ).click(function() {
+    $( ".menu" ).slideToggle( "fast", function() {
+      $( ".hamburger" ).hide();
+      $( ".cross" ).show();
+    });
+  });
+
+  $( ".cross" ).click(function() {
+    $( ".menu" ).slideToggle( "fast", function() {
+      $( ".cross" ).hide();
+      $( ".hamburger" ).show();
+    });
+  });
+
+});
+
     </script>
-  </head>
-  <body>
-    <div id="nav" class="nav">
+    <body>
+        <header id="header">
+      <div class="bg-parent">
+        <div class="bg"></div>
+      </div>
+      <img src="https://res.cloudinary.com/grigoriewna/image/upload/v1531944534/FCC_LandingPage/logo-ban.png" id="header-img" alt="Logo - pen nib on the mustard background and text SCRIPTORIUM">
+      <div class="hamburger-nav">
+        <p class="small-title"><a href="#">home</a></p>
+        <button class="hamburger">&#9776;</button>
+        <button class="cross">&#735;</button>
+      </div>
+      <nav id="nav-bar">
         <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#about" id="about-link" class="nav-link">About</a></li>
+          <li><a href="#scriptorium" id="scriptorium-link" class="nav-link">Scriptorium</a></li>
+          <li><a href="#contact" id="contact-link" class="nav-link">Contact</a></li>
+          <li><a href="#follow" id="follow-link" class="nav-link">Follow</a></li>
+          <li><a href="{%url 'gallery' %}" id="gallery-link" class="nav-link">Gallery</a></li>
+          <li><a href="{%url 'game' %}" id="gallery-link" class="nav-link">Game Demo</a></li>
         </ul>
-      </div>
-      <div class="container">
-        <div id="home" class="bg">
-          <div>
-            <h1>Home</h1>
-            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+      </nav>
+    </header>
+    <main>
+      <section>
+        <a id="about" class="anch anch-ab">&nbsp;</a>
+        <h2 id="about-head">About</h2>
+        <div class="flex-container-between min-light">
+          <article>
+            <figure>
+              <img src="https://res.cloudinary.com/grigoriewna/image/upload/v1531946674/FCC_LandingPage/bookshelf-mini.jpg" alt="White bookshelf full of colourful books">
+            </figure>
+            <h3>Who are we?</h3>
+              <p>We are the group of professional writers who want to help other people to plan, create, finish and publish their original works. No matter if writing is already your passion or you feel you need to improve or even if you just want to try it - we all have been there, where you are now. And we know how to make another step.</p>
+            </article>
+            <article>
+              <figure>
+                <img src="https://res.cloudinary.com/grigoriewna/image/upload/v1531946680/FCC_LandingPage/paper-mini.jpg" alt="Human's hand with a pencil starting to write something in a blank notebook">
+              </figure>
+              <h3>Why are we doing this?</h3>
+              <p>We have always wondered how it would be if more people decide to take a chance to tell their little stories - whether fictional or not. We cannot fix the past but we can try to improve the present and the future. But writing is not as easy as it seems. Each of us has their own little tricks to improve our works. We can share those tricks with you! The world deserves to discover your stories.</p>
+            </article>
+            <article>
+              <figure>
+                <img src="https://res.cloudinary.com/grigoriewna/image/upload/v1531946675/FCC_LandingPage/contract-mini.jpg" alt="Table with two coffee mugs, notebook and a contract paper, hands of two people who are discussing">
+              </figure>
+              <h3>Why to choose us?</h3>
+              <p>We have experience in creating over 20 books, mainly of fiction-genres: fantasy, mystery, crime, drama and historical. We will tach you how to analize publishers' offers and how to find the best agent. We will tell you abouyt the different ways of publishing and help you to choose which option would be the most suitable for your and your work.</p>
+            </article>
           </div>
-        </div>
-        <div id="about" class="bg">
-          <div>
-            <h1>About the company</h1>
-            <span>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span>
+        </section>
+        <section>
+          <a id="scriptorium" class="anch">&nbsp</a>
+          <h2 id="scriptorium-head">Scriptorium</h2>
+          <p>Scriptorium was the place in medieval monastery where the books were edited, written and decorated by the monks. The place took its name from latin scribere which means to write. Watch dr Sally Dormer and her interesting lecture about creation, writing and illuminating books in the middle ages.</p>
+            <div class="video-container">
+              <iframe id="video"  height="315" src="https://www.youtube.com/embed/VBxo51GiGiU" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+          </section>
+        <section class="min-light">
+          <a id="contact" class="anch">&nbsp;</a>
+          <h2 id="contact-head">Contact</h2>
+          <fieldset>
+            <legend>Subscribe to get free pdf guide with useful tips for writing begginers!</legend>
+            <form id="form" action="https://www.freecodecamp.com/email-submit" method="POST">
+              <div>
+                <label for="email" id="email-label">Email:</label>
+                <input id="email" type="email" name="email" placeholder="your email" required/>
+                <input id="submit" type="submit" name="submit" value="Submit"/>
+              </div>
+            </form>
+          </fieldset>
+        </section>
+        <section>
+          <a id="follow" class="anch">&nbsp;</a>
+          <h2 id="follow-head">Follow</h2>
+          <div class="flex-container-icon">
+            <div>
+              <figure>
+                <a href="https://facebook.com" target="_blank">
+                  <i class="fab fa-facebook-square"></i>
+                </a>
+              </figure>
+            </div>
+            <div>
+              <figure>
+                <a href="https://twitter.com" target="_blank">
+                  <i class="fab fa-twitter-square"></i>
+                </a>
+              </figure>
+            </div>
+            <div>
+              <figure>
+                <a href="https://instagram.com" target="_blank">
+                  <i class="fab fa-instagram" data-fa-transform="shrink-4" data-fa-mask="fas fa-square"></i>
+                </a>
+              </figure>
+            </div>
           </div>
+        </section>
+      </main>
+      <footer class="flex-container-footer">
+        <div class="credit">
+          Created by <a href="#" target="_blank">grigoriewna</a>. Credits:
+          <a href="https://unsplash.com/@rawpixel" target="_blank">rawpixel</a> & <a href="https://unsplash.com/@jamiehowardtaylor" target="_blank">jamietaylor</a> on <a href="https://unsplash.com" target="_blank">unslpash.com</a>,
+          <a href="https://icons8.com" target="_blank">icons8.com</a>,
+          <a href="https://fontawesome.com" target="_blank">fontawesome.com</a>.
         </div>
-        <div id="services" class="bg">
-          <div>
-            <h1>Services we do</h1>
-            <span>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
-          </div>
+        <div class="toplink">
+          <a href="#" id="to-top" class="to-top">back to top</a>
         </div>
-        <div id="contact" class="bg">
-          <div>
-            <h1>Contact us</h1>
-            <span>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
-          </div>
-        </div>
-        <div class="newsletter">
-          <p>Hear something from us</p>
-          <div>
-            Email
-            <input placeholder="your.email@example.com">
-            <button>Submit</button>
-          </div>
-        </div>
-        <div class="footer">
-          <span>This is the footer</span>
-          <span><a href="#home">Home</a></span>
-          <span><a href="#about">About</a></span>
-          <span><a href="#services">Services</a></span>
-          <span><a href="#contact">Contact</a></span>
-          <span>Lorem ipsum dolor sit amet</span>
-        </div>
-      </div>
-  </body>
+      </footer>
+    </main>
+
+    <!--<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>-->
+    </body>
 </html>

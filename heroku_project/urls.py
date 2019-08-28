@@ -20,5 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$',views.index,name="index")
+    url(r'^$',views.index,name="index"),
+    url(r'/gallery',views.gallery,name="gallery"),
+    url(r'/game',views.game,name="game"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
